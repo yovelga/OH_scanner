@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.DS_Store
+# Keep tmp/ directory but ignore its contents
+tmp/*
+!tmp/.gitkeep
