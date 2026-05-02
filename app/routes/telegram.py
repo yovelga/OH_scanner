@@ -10,6 +10,7 @@ Flow:
 """
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
 from typing import Optional
@@ -69,7 +70,7 @@ async def telegram_webhook(update: TelegramUpdate) -> dict:
         if url:
             logger.info(f"URL detected: {url} | user_id={user_id}")
             try:
-                result = processor_service.process_url(url)
+                result = await asyncio.to_thread(processor_service.process_url, url)
                 reply = telegram_service.format_url_reply(result)
                 await telegram_service.send_message(chat_id, reply)
                 logger.info(f"URL processed successfully | url={url} | user_id={user_id}")
